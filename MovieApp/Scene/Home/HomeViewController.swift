@@ -1,10 +1,12 @@
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController {
-    
+
+class HomeViewController: UIViewController, HomeCollectionViewDelegate {
+
     private var collectionView: UICollectionView!
     private var viewModel = HomeViewModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +23,17 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = searchButton
     }
     
+    func didSelectedMovie(movieId: Int) {
+        let viewModel = MovieViewModel(id: movieId)
+        let movieVC = MovieViewController(viewModel: viewModel)
+        //viewModel.searchMovie(selectedText: <#T##String#>)
+        //print(movieId)
+        navigationController?.pushViewController(movieVC, animated: true)
+    }
+    
     @objc func searchButtonTapped() {
         let vc = SearchViewController()
-        present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func configureUI() {
@@ -66,6 +76,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as! HomeCollectionViewCell
         let item = viewModel.items[indexPath.item]
+        cell.delegate = self
         cell.configure(title: item.title, movies: item.movies)
         return cell
     }

@@ -10,6 +10,22 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         configureCollectonView()
         configureNavigationBar()
+        setupViewModelCallbacks()
+        getMovies()
+    }
+    
+    func getMovies(){
+        viewModel.getAllMovies()
+    }
+    
+    private func setupViewModelCallbacks() {
+        viewModel.onFailure = { errorMessage in
+            print("Error: \(errorMessage)")
+        }
+        
+        viewModel.onSuccess = { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
     
     func configureCollectonView(){
@@ -55,29 +71,23 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width, height: 160)
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        .init(top: 0, left: 12, bottom: 0, right: 12)
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    //        .init(top: 0, left: 12, bottom: 0, right: 12)
+    //    }
 }
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
-        viewModel.searchMovie(searchText: searchController.searchBar.text ?? "", endpoint: Endpoints(rawValue: Endpoints.searchMovies.rawValue) ?? .searchMovies)
-        
-        viewModel.error = { errorMessage in
-            print("Error: \(errorMessage)")
-        }
-        viewModel.success = {
-            self.collectionView.reloadData()
-        }
+        guard let searchText = searchController.searchBar.text else { return }
+        viewModel.searchMovie(searchText: searchText, endpoint: .searchMovies)
     }
     
-        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-            viewModel.items.removeAll()
-            collectionView.reloadData()
-        }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.items.removeAll()
+        collectionView.reloadData()
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     }
+    
 }

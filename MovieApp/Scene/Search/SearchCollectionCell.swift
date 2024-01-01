@@ -99,6 +99,6 @@ class SearchCollectionCell: UICollectionViewCell {
         overviewLabel.text = movie.overview
         
         let imageUrl = "\(NetworkHelper.imagePath)\(movie.posterPath ?? "")"
-                posterImageView.loadImage(url: imageUrl)
+        posterImageView.loadImage(url: imageUrl)
     }
 }

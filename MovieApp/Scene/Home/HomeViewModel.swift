@@ -13,13 +13,13 @@ class HomeViewModel {
     let manager = HomeManager()
     
     func getItems() {
-        getMovies(title: "Popular", endpoint: Endpoints.popularMovies)
-        getMovies(title: "Top Rated", endpoint: Endpoints.topRatedMovies)
-        getMovies(title: "Upcoming", endpoint: Endpoints.upcomingMovies)
-        getMovies(title: "Now Playing", endpoint: Endpoints.nowPlayingMovies)
+        getMovies(title: "Popular", endpoint: HomeEndpoints.popularMovies)
+        getMovies(title: "Top Rated", endpoint: HomeEndpoints.topRatedMovies)
+        getMovies(title: "Upcoming", endpoint: HomeEndpoints.upcomingMovies)
+        getMovies(title: "Now Playing", endpoint: HomeEndpoints.nowPlayingMovies)
     }
     
-    func getMovies(title: String, endpoint: Endpoints) {
+    func getMovies(title: String, endpoint: HomeEndpoints) {
         manager.getMovieList(endpoint: endpoint) { data, errorMessage in
             if let errorMessage {
                 self.error?(errorMessage)

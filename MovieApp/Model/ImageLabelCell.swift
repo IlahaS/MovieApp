@@ -5,8 +5,8 @@ protocol TopImageBottomLabelCellProtocol{
     
     var titleLabel: String { get }
     var imagePath: String { get }
-    
 }
+
 class ImageLabelCell: UICollectionViewCell {
     static let identifier = "ImageLabelCell"
     var containerView = UIView()

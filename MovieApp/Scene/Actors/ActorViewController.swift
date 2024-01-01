@@ -53,7 +53,7 @@ class ActorViewController: UIViewController {
     
     @objc func pullToRefresh(){
         viewModel.items.removeAll()
-        viewModel.refreshPagination()
+        //viewModel.refreshPagination()
         collectionView.reloadData()
         viewModel.getActors()
     }

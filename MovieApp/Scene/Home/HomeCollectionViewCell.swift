@@ -2,8 +2,12 @@ import UIKit
 import Kingfisher
 import SnapKit
 
+protocol HomeCollectionViewDelegate: AnyObject{
+    func didSelectedMovie(movieId: Int)
+}
+
 class HomeCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
-    
+    var delegate: HomeCollectionViewDelegate?
     static let identifier = "HomeCollectionViewCell"
     var movies = [MovieResult]()
     private var collectionView: UICollectionView!
@@ -51,6 +55,7 @@ class HomeCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource, 
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func configure(title: String, movies: [MovieResult]) {
         titleLabel.text = title
         self.movies = movies
@@ -81,17 +86,24 @@ class HomeCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource, 
         layout.minimumLineSpacing = 12
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageLabelCell.identifier, for: indexPath) as! ImageLabelCell
-        cell.configure(data: movies[indexPath.item])
+        let selectedMovie = movies[indexPath.item]
+        cell.configure(data: selectedMovie)
+        
         // cell.backgroundColor = .red
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let movieId = movies[indexPath.row].id{
+            delegate?.didSelectedMovie(movieId: movieId )
+            //print(movie)
+        }
     }
     
     //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

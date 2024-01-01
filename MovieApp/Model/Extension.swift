@@ -4,9 +4,9 @@ import UIKit
 import Kingfisher
 
 extension UIImage {
-    //static var logoImage: UIImage { UIImage(named: "logo")! }
-    
+    static var logoImage: UIImage { UIImage(named: "logo")! }
 }
+
 extension UIImageView {
     func loadImage(url: String) {
         let path = "\(NetworkHelper.imagePath)\(url)"
@@ -36,5 +36,4 @@ extension UIColor {
        }
     
     static var blueColor: UIColor { UIColor(hexString: "0099FF") }
-    
 }
