@@ -16,6 +16,32 @@ class HomeViewController: UIViewController, HomeCollectionViewDelegate {
         viewModel.filteredResults = { [weak self] filteredItems in
             self?.collectionView.reloadData()
         }
+        let traitChangeHandler: ((HomeViewController, UITraitCollection) -> Void) = { [weak self] (controller, previousTraitCollection) in
+            self?.updateAppearanceForCurrentTraitCollection()
+        }
+        self.registerForTraitChanges([UITraitUserInterfaceStyle.self], handler: traitChangeHandler)
+        updateAppearanceForCurrentTraitCollection()
+    }
+    
+    func updateAppearanceForCurrentTraitCollection() {
+        if traitCollection.userInterfaceStyle == .dark {
+            //navigationItem.largeTitleDisplayMode = .never
+            
+            navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)
+            ]
+            
+            collectionView.backgroundColor = .darkColor
+        } else {
+            
+            //navigationItem.largeTitleDisplayMode = .always
+            navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.black,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)
+            ]
+            collectionView.backgroundColor = .white
+        }
     }
     
     func setupNavigationBar() {
@@ -49,7 +75,7 @@ class HomeViewController: UIViewController, HomeCollectionViewDelegate {
         collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
+        //collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in

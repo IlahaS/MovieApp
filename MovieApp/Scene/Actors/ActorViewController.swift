@@ -17,17 +17,14 @@ class ActorViewController: UIViewController {
     func configureUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Actors"
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)
-        ]
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ImageLabelCell.self, forCellWithReuseIdentifier: ImageLabelCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
+        //collectionView.backgroundColor = .white
         
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl

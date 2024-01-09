@@ -11,7 +11,7 @@ class ImageLabelCell: UICollectionViewCell {
     static let identifier = "ImageLabelCell"
     var containerView = UIView()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 18
@@ -22,8 +22,8 @@ class ImageLabelCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
+        //label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 3
         return label
     }()
@@ -52,7 +52,7 @@ class ImageLabelCell: UICollectionViewCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(4)
+            make.top.equalTo(imageView.snp.bottom).offset(6)
             make.height.equalTo(40)
             make.leading.trailing.bottom.equalToSuperview().inset(4)
         }

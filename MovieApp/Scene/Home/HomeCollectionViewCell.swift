@@ -26,7 +26,7 @@ class HomeCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource, 
         //.setImage(UIImage(named: "plus.square.fill"), for: .normal)
         button.setTitle("See all  >", for: .normal)
         button.setTitleColor(.blueColor, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12 )
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14 )
         //button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -39,22 +39,34 @@ class HomeCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource, 
         seeAllButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(30)
             make.height.equalTo(40)
-            make.top.equalToSuperview().inset(6)
+            make.top.equalToSuperview().inset(2)
             make.centerY.equalTo(titleLabel.snp.centerY)
             
         }
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(24)
-            make.top.equalToSuperview().inset(6)
+            make.top.equalToSuperview().inset(2)
             make.height.equalTo(40)
         }
         configureCollectionView()
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (controller: UIViewController, previousTraitCollection: UITraitCollection) in
+            self.updateTitleLabelColor()
+            
+        }
+        
+        updateTitleLabelColor()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func updateTitleLabelColor() {
+        if #available(iOS 17.0, *) {
+            let isDarkMode = traitCollection.userInterfaceStyle == .dark
+            titleLabel.textColor = isDarkMode ? .white : .black
+        }
+    }
     
     func configure(title: String, movies: [MovieResult]) {
         titleLabel.text = title

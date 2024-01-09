@@ -43,7 +43,7 @@ struct MovieResult: Codable, TopImageBottomLabelCellProtocol{
 
     enum CodingKeys: String, CodingKey {
         case adult
-        case backdropPath = "backdrop_path"
+        case backdropPath = "backdrop_path"  
         case genreIDS = "genre_ids"
         case id
         case originalLanguage = "original_language"

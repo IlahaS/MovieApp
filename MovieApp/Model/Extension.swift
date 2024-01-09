@@ -9,8 +9,8 @@ extension UIImage {
 
 extension UIImageView {
     func loadImage(url: String) {
-        let path = "\(NetworkHelper.imagePath)\(url)"
-        if let finalUrl = URL(string: path) {
+        let path = "\(NetworkHelper.imagePath)"
+        if let finalUrl = URL(string: path + url) {
             self.kf.setImage(with: finalUrl)
         }
     }
@@ -35,5 +35,7 @@ extension UIColor {
            self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
        }
     
-    static var blueColor: UIColor { UIColor(hexString: "0099FF") }
+    static var blueColor: UIColor { UIColor(hexString: "43A8D4") }
+    static var darkColor: UIColor {UIColor (hexString: "0C091A")}
+    static var cellColor: UIColor {UIColor (hexString: "FFFFFF")}
 }

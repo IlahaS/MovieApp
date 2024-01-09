@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
         collectionView.register(SearchCollectionCell.self, forCellWithReuseIdentifier: SearchCollectionCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
+        //collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in

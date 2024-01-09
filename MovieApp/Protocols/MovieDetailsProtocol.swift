@@ -1,8 +1,7 @@
-//
-//  MovieDetailsProtocol.swift
-//  MovieApp
-//
-//  Created by Ilahe Samedova on 27.12.23.
-//
+
 
 import Foundation
+
+protocol MovieDetailProtocol {
+    func getMovieDetail(movieID: Int, completion: @escaping((MovieDetail?, String?)->Void))
+}

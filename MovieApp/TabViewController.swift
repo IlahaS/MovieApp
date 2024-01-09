@@ -15,7 +15,11 @@ final class TabViewController: UITabBarController {
         let actor = self.createNav(with: "Actors", and: UIImage(systemName: "person.3")!, and: ActorViewController())
         let search = self.createNav(with: "Search", and: UIImage(systemName: "magnifyingglass")!, and: SearchViewController())
         self.setViewControllers([home, search ,actor ,favorite, profile], animated: true)
+        
+        tabBar.tintColor = .blueColor
+        
     }
+    
     
     private func createNav(with name: String, and image: UIImage, and vc: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: vc)
@@ -23,4 +27,5 @@ final class TabViewController: UITabBarController {
         nav.tabBarItem.image = image
         return nav
     }
+    
 }
