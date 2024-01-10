@@ -50,6 +50,8 @@
 		38FB35022B47362100E9DA40 /* CastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB35012B47362100E9DA40 /* CastManager.swift */; };
 		38FB35042B47365700E9DA40 /* CastProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB35032B47365700E9DA40 /* CastProtocol.swift */; };
 		38FB35062B47463E00E9DA40 /* MovieDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB35052B47463E00E9DA40 /* MovieDetailManager.swift */; };
+		38FB35092B4EEBAB00E9DA40 /* ActorMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB35082B4EEBAB00E9DA40 /* ActorMoviesViewController.swift */; };
+		38FB350B2B4EEBF800E9DA40 /* ActorMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB350A2B4EEBF800E9DA40 /* ActorMovieViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		38FB35012B47362100E9DA40 /* CastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastManager.swift; sourceTree = "<group>"; };
 		38FB35032B47365700E9DA40 /* CastProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastProtocol.swift; sourceTree = "<group>"; };
 		38FB35052B47463E00E9DA40 /* MovieDetailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailManager.swift; sourceTree = "<group>"; };
+		38FB35082B4EEBAB00E9DA40 /* ActorMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorMoviesViewController.swift; sourceTree = "<group>"; };
+		38FB350A2B4EEBF800E9DA40 /* ActorMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorMovieViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +118,9 @@
 		38149F3D2B1F5B4C0001E48E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				382923B82B1B2D1A00783A11 /* HomeViewController.swift */,
 				38149F522B1FBB630001E48E /* HomeCollectionViewCell.swift */,
 				38149F562B1FBE470001E48E /* HomeViewModel.swift */,
-				382923B82B1B2D1A00783A11 /* HomeViewController.swift */,
 				38149F502B1F61A20001E48E /* MovieModels.swift */,
 				38E29E762B3C2F070087735B /* HomeEndpoints.swift */,
 			);
@@ -197,6 +201,7 @@
 				387664E32B2653170057789B /* Search */,
 				3899855C2B2B9B94000DE664 /* Movie */,
 				38149F3E2B1F5B680001E48E /* Favorites */,
+				38FB35072B4EEA8100E9DA40 /* ActorMovies */,
 				38149F3F2B1F5B7E0001E48E /* Profile */,
 			);
 			path = Scene;
@@ -219,7 +224,6 @@
 			children = (
 				387664E42B2653380057789B /* SearchViewController.swift */,
 				387664E62B2655A90057789B /* SearchViewModel.swift */,
-				387664F02B2A09A40057789B /* ActorListProtocol.swift */,
 				387664E82B2655C10057789B /* SearchCollectionCell.swift */,
 				38E29E7A2B3C30020087735B /* SearchEndpoints.swift */,
 			);
@@ -243,6 +247,7 @@
 				387664F22B2A0C830057789B /* MovieListProtocol.swift */,
 				38E29E722B3C2EAF0087735B /* MovieDetailsProtocol.swift */,
 				38E29E742B3C2ED50087735B /* MovieSearchProtocol.swift */,
+				387664F02B2A09A40057789B /* ActorListProtocol.swift */,
 				38FB35032B47365700E9DA40 /* CastProtocol.swift */,
 			);
 			path = Protocols;
@@ -258,6 +263,15 @@
 				38FB34FD2B459F3600E9DA40 /* MovieDetailModel.swift */,
 			);
 			path = Movie;
+			sourceTree = "<group>";
+		};
+		38FB35072B4EEA8100E9DA40 /* ActorMovies */ = {
+			isa = PBXGroup;
+			children = (
+				38FB35082B4EEBAB00E9DA40 /* ActorMoviesViewController.swift */,
+				38FB350A2B4EEBF800E9DA40 /* ActorMovieViewModel.swift */,
+			);
+			path = ActorMovies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +371,7 @@
 				387664E72B2655A90057789B /* SearchViewModel.swift in Sources */,
 				382923B92B1B2D1A00783A11 /* HomeViewController.swift in Sources */,
 				387664942B2107EA0057789B /* NetworkHelper.swift in Sources */,
+				38FB350B2B4EEBF800E9DA40 /* ActorMovieViewModel.swift in Sources */,
 				38E29E792B3C2FD80087735B /* ActorEndpoints.swift in Sources */,
 				38149F3C2B1F5A1B0001E48E /* ProfileViewController.swift in Sources */,
 				387664F12B2A09A40057789B /* ActorListProtocol.swift in Sources */,
@@ -371,6 +386,7 @@
 				38E29E772B3C2F070087735B /* HomeEndpoints.swift in Sources */,
 				389985602B2B9E2F000DE664 /* MovieViewModel.swift in Sources */,
 				38FB35042B47365700E9DA40 /* CastProtocol.swift in Sources */,
+				38FB35092B4EEBAB00E9DA40 /* ActorMoviesViewController.swift in Sources */,
 				38149F532B1FBB630001E48E /* HomeCollectionViewCell.swift in Sources */,
 				38E29E7B2B3C30020087735B /* SearchEndpoints.swift in Sources */,
 				38149F3A2B1F5A080001E48E /* FavoriteViewController.swift in Sources */,

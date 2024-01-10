@@ -425,8 +425,8 @@ class MovieActorsCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     private lazy var castCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
-        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        layout.itemSize = .init(width: 100, height: 150)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.dataSource = self
         collection.delegate = self
         collection.backgroundColor = .darkColor
@@ -445,8 +445,10 @@ class MovieActorsCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(castCollection)
-        addSubview(castLabel)
+        //backgroundColor = .red
+        
+        contentView.addSubview(castLabel)
+        contentView.addSubview(castCollection)
         
         castLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(4)
@@ -454,10 +456,15 @@ class MovieActorsCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         }
 
         castCollection.snp.makeConstraints { make in
-            make.top.equalTo(castLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().inset(24)
-            make.height.equalTo(200)
-            make.width.equalToSuperview()
+            make.top.equalTo(castLabel.snp.bottom).offset(8)
+            make.leading.trailing.bottom.equalToSuperview()
+//            make.top.equalTo(castLabel.snp.bottom).offset(4)
+//            make.leading.equalToSuperview().inset(24)
+//            make.trailing.equalToSuperview().inset(-24)
+//            make.height.equalToSuperview().inset(150)
+//
+//            make.height.equalTo(180)
+//            make.edges.equalToSuperview().inset(8)
         }
     }
     
@@ -471,13 +478,14 @@ class MovieActorsCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         return cast.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: 140, height: collectionView.frame.height-30)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        .init(width: 96, height: 96)
+//    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        .init(top: 0, left: 13, bottom: 0, right: 13)
+        .init(top: 0, left: 4, bottom: 0, right: 4)
     }
-    
+//    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageLabelCell.identifier, for: indexPath) as! ImageLabelCell
         if let cast = cast[indexPath.row] {

@@ -1,11 +1,15 @@
 
 import UIKit
 
+protocol SearchViewDelegate: AnyObject{
+    func didSelectedMovie(movieId: Int)
+}
+
 class SearchViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var viewModel = SearchViewModel()
-    
+    var delegate: SearchViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectonView()
@@ -66,6 +70,14 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         let item = viewModel.items[indexPath.item]
         cell.configure(with: item)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let movieID = viewModel.items[indexPath.row].id{
+            let viewModel = MovieViewModel(id: movieID)
+            let movieVC = MovieViewController(viewModel: viewModel)
+            navigationController?.pushViewController(movieVC, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
