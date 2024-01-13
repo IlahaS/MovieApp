@@ -8,7 +8,7 @@ final class TabViewController: UITabBarController {
         setUpTabs()
     }
     
-    private func setUpTabs(){
+    private func setUpTabs() {
         let home = self.createNav(with: "Home", and: UIImage(systemName: "house")!, and: HomeViewController())
         let favorite = self.createNav(with: "Favorite", and: UIImage(systemName: "heart")!, and: FavoriteViewController())
         let profile = self.createNav(with: "Profile", and: UIImage(systemName: "person")!, and: ProfileViewController())

@@ -12,9 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .blueColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blueColor]
         
-        window?.overrideUserInterfaceStyle = .dark
-        let vc = TabViewController()
-        window?.rootViewController = vc
+//        window?.overrideUserInterfaceStyle = .light
+        window?.rootViewController = TabViewController()
         window?.makeKeyAndVisible()
         return true
     }

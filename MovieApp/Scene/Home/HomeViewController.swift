@@ -1,47 +1,24 @@
 import UIKit
 import SnapKit
 
-
 class HomeViewController: UIViewController, HomeCollectionViewDelegate {
-
     private var collectionView: UICollectionView!
     private var viewModel = HomeViewModel()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureUI()
         configureViewModel()
         setupNavigationBar()
         viewModel.filteredResults = { [weak self] filteredItems in
             self?.collectionView.reloadData()
         }
-        let traitChangeHandler: ((HomeViewController, UITraitCollection) -> Void) = { [weak self] (controller, previousTraitCollection) in
-            self?.updateAppearanceForCurrentTraitCollection()
-        }
-        self.registerForTraitChanges([UITraitUserInterfaceStyle.self], handler: traitChangeHandler)
-        updateAppearanceForCurrentTraitCollection()
+        //collectionView.backgroundColor = .darkColor
     }
     
-    func updateAppearanceForCurrentTraitCollection() {
-        if traitCollection.userInterfaceStyle == .dark {
-            //navigationItem.largeTitleDisplayMode = .never
-            
-            navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.white,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)
-            ]
-            
-            collectionView.backgroundColor = .darkColor
-        } else {
-            
-            //navigationItem.largeTitleDisplayMode = .always
-            navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.black,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)
-            ]
-            collectionView.backgroundColor = .white
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        print("")
     }
     
     func setupNavigationBar() {
@@ -69,8 +46,10 @@ class HomeViewController: UIViewController, HomeCollectionViewDelegate {
             NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         collectionView.dataSource = self

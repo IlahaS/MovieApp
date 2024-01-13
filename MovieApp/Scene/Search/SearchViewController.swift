@@ -10,6 +10,7 @@ class SearchViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var viewModel = SearchViewModel()
     var delegate: SearchViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectonView()
@@ -33,13 +34,15 @@ class SearchViewController: UIViewController {
     }
     
     func configureCollectonView(){
+        view.backgroundColor = .darkColor
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(SearchCollectionCell.self, forCellWithReuseIdentifier: SearchCollectionCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        //collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in

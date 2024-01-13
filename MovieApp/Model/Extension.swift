@@ -36,6 +36,7 @@ extension UIColor {
        }
     
     static var blueColor: UIColor { UIColor(hexString: "43A8D4") }
-    static var darkColor: UIColor {UIColor (hexString: "0C091A")}
+    static var darkColor:  UIColor { UIColor(named: "darkColor") ?? .white }
+    //UIColor { UIColor (hexString: "0C091A") }
     static var cellColor: UIColor {UIColor (hexString: "FFFFFF")}
 }
